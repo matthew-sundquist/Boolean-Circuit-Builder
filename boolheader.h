@@ -19,7 +19,7 @@ int function_gate(GateType gate, int count, int *args);
 typedef struct internalNode {
 	struct internaNode *left, *right, *parent;
 	int (*function_gate)(int count, int *args);
-	GateType gate; 
+	GateType *gate; 
 } internalNode;
 
 typedef struct leafNode {

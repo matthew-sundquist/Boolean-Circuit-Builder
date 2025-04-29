@@ -14,13 +14,14 @@
 
 int function_gate(GateType type, int count, int *args)
 {
-	if (args == null)
+	int result = 0;
+	if (args == NULL)
 		return -1;
 
 	switch (type)
 	{
 		case AND_GATE:
-			for (int i = 0; i < count, i++)
+			for (int i = 0; i < count; i++)
 			{
 				if (args[i] == 0)
 					return 0;
@@ -30,7 +31,7 @@ int function_gate(GateType type, int count, int *args)
 			break;
 
 		case OR_GATE:
-			for (int i = 0; i < count, i++)
+			for (int i = 0; i < count; i++)
 			{
 				if (args[i] == 1)
 					return 1;
@@ -40,8 +41,7 @@ int function_gate(GateType type, int count, int *args)
 			break;
 
 		case XOR_GATE:
-			int result = 0;
-			for (int i = 0; i < count, i++)
+			for (int i = 0; i < count; i++)
 			{
 				result ^= args[i];
 			}
