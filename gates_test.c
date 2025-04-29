@@ -1,7 +1,7 @@
 /* Testing for the gates.c file */
 
 #include <boolheader.h>
-#define NUM_TESTS 1
+#define NUM_TESTS 2
 
 
 int test_AND()
@@ -15,14 +15,73 @@ int test_AND()
 		result++;
 	}
 
+	arr[0] = 0;
+	arr[1] = 0;
+	if (function_gate(AND_GATE, 2, arr) != 0)
+	{
+		result++;
+	}
+
+	arr[1] = 1;
+	if (function_gate(AND_GATE, 2, arr) != 0)
+	{
+		result++;
+	}
+
+	if (function_gate(AND_GATE, 0, arr) != -1)
+	{
+		result++;
+	}
+
+	int arr2[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+	if (function_gate(AND_GATE, 10, arr2) != 0)
+	{
+		result++;
+	}
+
 	return result;
 }
+
+int test_OR()
+{
+
+	int result = 0;
+	
+	int arr[2] = {1, 1};
+	if (function_gate(OR_GATE, 2, arr) != 1)
+	{
+		result++;
+	}
+
+	arr[0] = 0;
+	arr[1] = 0;
+	if (function_gate(OR_GATE, 2, arr) != 0)
+	{
+		result++;
+	}
+
+	arr[1] = 1;
+	if (function_gate(OR_GATE, 2, arr) != 1)
+	{
+		result++;
+	}
+
+	int arr2[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+	if (function_gate(OR_GATE, 10, arr2) != 1)
+	{
+		result++;
+	}
+
+	return result;
+}
+
 
 
 typedef int (*TestDriver)();
 
 TestDriver tests[] = {
-	test_AND
+	test_AND,
+	test_OR
 };
 
 

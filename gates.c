@@ -15,7 +15,7 @@
 int function_gate(GateType type, int count, int *args)
 {
 	int result = 0;
-	if (args == NULL)
+	if (args == NULL || count == 0)
 		return -1;
 
 	switch (type)
