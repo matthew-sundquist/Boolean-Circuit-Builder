@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef enum {
 	AND_GATE,
@@ -20,6 +19,7 @@ int function_gate(GateType gate, int count, int *args);
 typedef struct internalNode {
 	struct internaNode *left, *right, *parent;
 	int (*function_gate)(int count, int *args);
+	GateType gate; 
 } internalNode;
 
 typedef struct leafNode {
