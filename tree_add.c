@@ -9,20 +9,6 @@ internalNode *createInternalNode(GateType type, int count, internalNode *parent)
 	if (newNode == NULL)
 		return NULL;
 
-	newNode->count = (int *) malloc(sizeof(count));
-
-	if (newNode->count == NULL)
-	{
-		return NULL;
-	}
-
-	newNode->gate = (GateType *) malloc(sizeof(GateType));
-
-	if (newNode->count == NULL)
-	{
-		return NULL;
-	}
-
 	newNode->parent = (internalNode *) malloc(sizeof(internalNode));
 
 	if (newNode->parent == NULL)
@@ -43,13 +29,6 @@ leafNode *createLeafNode(int data, internalNode *parent)
 
 	if (newNode == NULL)
 		return NULL;
-	
-	newNode->data = (int *) malloc(sizeof(int));
-	
-	if (newNode->data == NULL)
-	{
-		return NULL;
-	}
 
 	newNode->parent = (internalNode *) malloc(sizeof(internalNode));
 

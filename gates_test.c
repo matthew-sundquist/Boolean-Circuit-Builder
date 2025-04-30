@@ -1,7 +1,7 @@
 /* Testing for the gates.c file */
 
 #include <boolheader.h>
-#define NUM_TESTS 2
+#define NUM_TESTS 4
 
 
 int test_AND()

@@ -18,12 +18,12 @@ int function_gate(GateType gate, int count, int *args);
 
 typedef struct internalNode {
 	struct internalNode *left, *right, *parent;
-	int *count;
-	GateType *gate; 
+	int count;
+	GateType gate; 
 } internalNode;
 
 typedef struct leafNode {
-	int *data;
+	int data;
 	struct internalNode *parent;
 } leafNode;
 
@@ -31,7 +31,7 @@ typedef struct tree {
 	struct internalNode *root;
 } tree;
 
-internalNode *createInternalNode(GateType type, int count, internalNode *parent)
-leafNode *createLeafNode(int data, internalNode *parent)
+internalNode *createInternalNode(GateType type, int count, internalNode *parent);
+leafNode *createLeafNode(int data, internalNode *parent);
 
 #endif
