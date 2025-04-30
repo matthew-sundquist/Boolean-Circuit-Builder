@@ -8,6 +8,11 @@
 #include <stdlib.h>
 
 typedef enum {
+	INTERNAL,
+	LEAF
+} NodeType;
+
+typedef enum {
 	AND_GATE,
 	OR_GATE,
 	XOR_GATE,
@@ -17,7 +22,10 @@ typedef enum {
 int function_gate(GateType gate, int count, int *args);
 
 typedef struct internalNode {
-	struct internalNode *left, *right, *parent;
+	void *left, *right;
+	NodeType leftType;
+	NodeType rightType;
+	struct internalNode *parent;
 	int count;
 	GateType gate; 
 } internalNode;

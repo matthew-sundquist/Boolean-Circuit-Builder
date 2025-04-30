@@ -19,6 +19,8 @@ internalNode *createInternalNode(GateType type, int count, internalNode *parent)
 	newNode->count = count;
 	newNode->gate = type;
 	newNode->parent = parent;
+	newNode->left = NULL;
+	newNode->right = NULL;
 
 	return newNode;
 }
@@ -42,5 +44,77 @@ leafNode *createLeafNode(int data, internalNode *parent)
 
 	return newNode;
 }
+
+internalNode *createRoot(GateType type, int count)
+{
+	internalNode *newNode;
+
+	if ((newNode = createInternalNode(type, count, NULL)) == NULL)
+	{
+		return NULL;
+	}
+
+	return newNode;
+}
+
+
+int setLeft(NodeType type, void *newNode, internalNode *parent)
+{
+	if (parent == NULL || newNode == NULL)
+		return -1;
+
+	if (type == INTERNAL)
+	{
+		internalNode *int_node = (internalNode *) newNode;
+		parent->left = int_node;
+		parent->leftType = INTERNAL;
+	}
+
+	else if (type == LEAF)
+	{
+		leafNode *leaf_node = (leafNode *) newNode;
+		parent->left = leaf_node;
+		parent->leftType = LEAF;
+	}
+
+	else
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
+int setRight(NodeType type, void *newNode, internalNode *parent)
+{
+	if (parent == NULL || newNode == NULL)
+	{
+		return -1;
+	}
+
+	if (type == INTERNAL)
+	{
+		internalNode *int_node = (internalNode *) newNode;
+		parent->right = int_node;
+		parent->rightType = INTERNAL;
+	}
+
+	else if (type == LEAF)
+	{
+		leafNode *leaf_node = (leafNode *) newNode;
+		parent->right = leaf_node;
+		parent->rightType = LEAF;
+	}
+
+	else
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
+
+
 
 
