@@ -75,13 +75,76 @@ int test_OR()
 	return result;
 }
 
+int test_NOT()
+{
+	int result = 0;
+	int arr[1] = {1};
+
+	if (function_gate(NOT_GATE, 1, arr) != 0)
+	{
+		result++;
+	}
+
+	arr[0] = 0;
+
+	if (function_gate(NOT_GATE, 1, arr) != 1)
+	{
+		result++;
+	}
+
+	int arr1[2] = {1, 1};
+
+	if (function_gate(NOT_GATE, 2, arr1) != -1)
+	{
+		result++;
+	}
+
+	return result;
+}
+
+int test_XOR()
+{
+	int result = 0;
+	int arr[2] = {1, 0};
+
+	if (function_gate(XOR_GATE, 2, arr) != 1)
+	{
+		result++;
+	}
+
+	arr[0] = 0;
+
+	if (function_gate(XOR_GATE, 2, arr) != 0)
+	{
+		result++;
+	}
+
+	arr[0] = 1;
+	arr[1] = 1;
+
+	if (function_gate(XOR_GATE, 2, arr) != 0)
+	{
+		result++;
+	}
+	
+	int	arr2[5] = {1, 1, 1, 0, 0};
+	
+	if (function_gate(XOR_GATE, 5, arr2) != 1)
+	{
+		result++;
+	}
+
+	return result;
+}
 
 
 typedef int (*TestDriver)();
 
 TestDriver tests[] = {
 	test_AND,
-	test_OR
+	test_OR,
+	test_NOT,
+	test_XOR
 };
 
 
