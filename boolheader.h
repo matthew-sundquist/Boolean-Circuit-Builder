@@ -9,7 +9,8 @@
 
 typedef enum {
 	INTERNAL,
-	LEAF
+	LEAF,
+	NONE
 } NodeType;
 
 typedef enum {
@@ -22,9 +23,8 @@ typedef enum {
 int function_gate(GateType gate, int count, int *args);
 
 typedef struct internalNode {
-	void *left, *right;
-	NodeType leftType;
-	NodeType rightType;
+	void **nodes;
+	NodeType *types;
 	struct internalNode *parent;
 	int count;
 	GateType gate; 
