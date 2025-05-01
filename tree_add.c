@@ -57,25 +57,26 @@ internalNode *createRoot(GateType type, int count)
 }
 
 
-
-
 int setLeft(NodeType type, void *newNode, internalNode *parent)
 {
 	if (parent == NULL || newNode == NULL)
+		return -1;
+
+	if (parent->count != 2)
 		return -1;
 
 	if (type == INTERNAL)
 	{
 		internalNode *int_node = (internalNode *) newNode;
 		parent->nodes[0] = int_node;
-		parent->leftType = INTERNAL;
+		parent->types[0] = INTERNAL;
 	}
 
 	else if (type == LEAF)
 	{
 		leafNode *leaf_node = (leafNode *) newNode;
-		parent->left = leaf_node;
-		parent->leftType = LEAF;
+		parent->nodes[0] = leaf_node;
+		parent->types[0] = LEAF;
 	}
 
 	else
@@ -89,22 +90,23 @@ int setLeft(NodeType type, void *newNode, internalNode *parent)
 int setRight(NodeType type, void *newNode, internalNode *parent)
 {
 	if (parent == NULL || newNode == NULL)
-	{
 		return -1;
-	}
+
+	if (parent->count != 2)
+		return -1;
 
 	if (type == INTERNAL)
 	{
 		internalNode *int_node = (internalNode *) newNode;
-		parent->right = int_node;
-		parent->rightType = INTERNAL;
+		parent->nodes[1] = int_node;
+		parent->types[1] = INTERNAL;
 	}
 
 	else if (type == LEAF)
 	{
 		leafNode *leaf_node = (leafNode *) newNode;
-		parent->right = leaf_node;
-		parent->rightType = LEAF;
+		parent->nodes[1] = leaf_node;
+		parent->types[1] = LEAF;
 	}
 
 	else
@@ -119,8 +121,31 @@ int setChild(NodeType type, void *newNode, internalNode *parent, int nodeNum)
 {
 	if (nodeNum < 0 || parent == NULL || newNode == NULL)
 		return -1;
+	
+	if (nodeNum >= parent->count)
+		return -1;
+	
+	if (type == INTERNAL)
+	{
+		internalNode *int_node = (internalNode *) newNode;
+		parent->nodes[nodeNum] = int_node;
+		parent->types[nodeNum] = INTERNAL;
+	}
+
+	else if (type == LEAF)
+	{
+		leafNode *leaf_node = (leafNode *) newNode;
+		parent->nodes[nodeNum] = leaf_node;
+		parent->types[nodeNum] = LEAF;
+	}
+
+	else
+	{
+		return -1;
+	}
 
 	
+	return 0;
 }
 
 
