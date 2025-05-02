@@ -2,7 +2,7 @@
 
 #include <boolheader.h>
 
-internalNode *createInternalNode(GateType type, int count, internalNode *parent)
+internalNode *createInternalNode(GateType type, int count)
 {
 	internalNode *newNode = (internalNode *) malloc(sizeof(internalNode));
 	
@@ -17,10 +17,9 @@ internalNode *createInternalNode(GateType type, int count, internalNode *parent)
 		return NULL;
 	}
 
-	
+	newNode->parent = NULL;
 	newNode->count = count;
 	newNode->gate = type;
-	newNode->parent = parent;
 	newNode->nodes = NULL;
 
 	for(int i = 0; i < count; i++)
@@ -31,15 +30,15 @@ internalNode *createInternalNode(GateType type, int count, internalNode *parent)
 	return newNode;
 }
 
-leafNode *createLeafNode(int data, internalNode *parent)
+leafNode *createLeafNode(int data)
 {
 	leafNode *newNode = (leafNode *) malloc(sizeof(leafNode));
 
 	if (newNode == NULL)
 		return NULL;
-
+	
+	newNode->parent = NULL;
 	newNode->data = data;
-	newNode->parent = parent;
 
 	return newNode;
 }
@@ -48,7 +47,7 @@ internalNode *createRoot(GateType type, int count)
 {
 	internalNode *newNode;
 
-	if ((newNode = createInternalNode(type, count, NULL)) == NULL)
+	if ((newNode = createInternalNode(type, count)) == NULL)
 	{
 		return NULL;
 	}

@@ -2,13 +2,13 @@
 
 #include <boolheader.h>
 
-#define NUM_TESTS 3
+#define NUM_TESTS 4
 
 
 int test_createInternalNode()
 {
 	int result = 0;
-	internalNode *newNode = createInternalNode(AND_GATE, 2, NULL);
+	internalNode *newNode = createInternalNode(AND_GATE, 2);
 	if (newNode == NULL)
 		result++;
 
@@ -27,7 +27,7 @@ int test_createInternalNode()
 int test_createLeafNode()
 {
 	int result = 0;
-	leafNode *newNode = createLeafNode(1, NULL);
+	leafNode *newNode = createLeafNode(1);
 	
 	if (newNode == NULL)
 		result++;
@@ -64,14 +64,26 @@ int test_createRoot()
 	return result;
 }
 
+int test_setLeft()
+{
+	int result = 0;
 
+	internalNode *parent = createRoot(AND_GATE, 2);
+	internalNode *child = createInternalNode(OR_GATE, 2);
+	if (child == NULL || parent == NULL)
+		printf("Malloc Failed to Create New Node");
+
+
+	return result;
+}
 
 typedef int (*TestDriver)(); 
 
 TestDriver tests[] = {
 	test_createInternalNode,
 	test_createLeafNode,
-	test_createRoot
+	test_createRoot,
+	test_setLeft
 };
 
 int main()

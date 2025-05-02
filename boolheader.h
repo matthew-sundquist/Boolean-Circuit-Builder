@@ -39,8 +39,8 @@ typedef struct tree {
 	struct internalNode *root;
 } tree;
 
-internalNode *createInternalNode(GateType type, int count, internalNode *parent);
-leafNode *createLeafNode(int data, internalNode *parent);
+internalNode *createInternalNode(GateType type, int count);
+leafNode *createLeafNode(int data);
 internalNode *createRoot(GateType type, int count);
 int setLeft(NodeType type, void *newNode, internalNode *parent);
 int setRight(NodeType type, void *newNode, internalNode *parent);
