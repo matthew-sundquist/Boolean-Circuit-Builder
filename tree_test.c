@@ -72,7 +72,13 @@ int test_setLeft()
 	internalNode *child = createInternalNode(OR_GATE, 2);
 	if (child == NULL || parent == NULL)
 		printf("Malloc Failed to Create New Node");
+	
+	setLeft(OR_GATE, child, parent);
 
+	internalNode *firstChild = (internalNode *)parent->nodes[0];
+		
+	if (firstChild->gate != OR_GATE)
+		result++;
 
 	return result;
 }

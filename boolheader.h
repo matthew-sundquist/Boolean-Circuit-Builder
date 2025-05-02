@@ -28,6 +28,7 @@ typedef struct internalNode {
 	struct internalNode *parent;
 	int count;
 	GateType gate; 
+	int cur_num_children;
 } internalNode;
 
 typedef struct leafNode {

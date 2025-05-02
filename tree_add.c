@@ -17,14 +17,22 @@ internalNode *createInternalNode(GateType type, int count)
 		return NULL;
 	}
 
+	newNode->nodes = malloc(sizeof(void *) * count);
+
+	if (newNode->nodes == NULL)
+	{
+		free(newNode); //replace this!
+		return NULL;
+	}
 	newNode->parent = NULL;
 	newNode->count = count;
 	newNode->gate = type;
-	newNode->nodes = NULL;
+	newNode->cur_num_children = 0;
 
 	for(int i = 0; i < count; i++)
 	{
 		newNode->types[i] = NONE;
+		newNode->nodes[i] = NULL;
 	}
 
 	return newNode;
@@ -63,11 +71,12 @@ int setLeft(NodeType type, void *newNode, internalNode *parent)
 
 	if (parent->count != 2)
 		return -1;
+	
 
 	if (type == INTERNAL)
 	{
 		internalNode *int_node = (internalNode *) newNode;
-		parent->nodes[0] = int_node;
+		parent->nodes[0] = newNode;
 		parent->types[0] = INTERNAL;
 	}
 
