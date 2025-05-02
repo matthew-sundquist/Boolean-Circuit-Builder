@@ -5,8 +5,8 @@
 internalNode *createInternalNode(GateType type, int count, internalNode *parent)
 {
 	internalNode *newNode = (internalNode *) malloc(sizeof(internalNode));
-
-	if (newNode == NULL)
+	
+	if (count < 1 || newNode == NULL)
 		return NULL;
 	
 	newNode->types = (NodeType *) malloc(sizeof(NodeType) * count);

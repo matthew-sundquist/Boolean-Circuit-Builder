@@ -2,7 +2,7 @@
 
 #include <boolheader.h>
 
-#define NUM_TESTS 2
+#define NUM_TESTS 3
 
 
 int test_createInternalNode()
@@ -41,13 +41,37 @@ int test_createLeafNode()
 	return result;
 }
 
+int test_createRoot()
+{
+	int result = 0;
+	
+	internalNode *newRoot = createRoot(AND_GATE, 3);
+
+	if (newRoot == NULL)
+		result++;
+	
+	if (newRoot->count != 3)
+		result++;
+	
+	if (newRoot->gate != AND_GATE)
+		result++;
+
+	internalNode *nullNode = createRoot(NONE, 0);
+
+	if (nullNode != NULL)
+		printf("FAILED");
+
+	return result;
+}
+
 
 
 typedef int (*TestDriver)(); 
 
 TestDriver tests[] = {
 	test_createInternalNode,
-	test_createLeafNode
+	test_createLeafNode,
+	test_createRoot
 };
 
 int main()
