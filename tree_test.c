@@ -2,7 +2,7 @@
 
 #include <boolheader.h>
 
-#define NUM_TESTS 4
+#define NUM_TESTS 5
 
 
 int test_createInternalNode()
@@ -64,6 +64,8 @@ int test_createRoot()
 	return result;
 }
 
+
+/* Since setLeft is the same as setRight I will not test setRight */
 int test_setLeft()
 {
 	int result = 0;
@@ -73,11 +75,63 @@ int test_setLeft()
 	if (child == NULL || parent == NULL)
 		printf("Malloc Failed to Create New Node");
 	
-	setLeft(OR_GATE, child, parent);
+	setLeft(INTERNAL, child, parent);
 
 	internalNode *firstChild = (internalNode *)parent->nodes[0];
 		
 	if (firstChild->gate != OR_GATE)
+		result++;
+	
+	if (setLeft(INTERNAL, child, NULL) != -1)
+		result++;
+	
+	internalNode *newParent = createRoot(AND_GATE, 1);
+
+	if (setLeft(INTERNAL, child, newParent) != -1)
+		result++;
+
+	internalNode *newParent2 = createRoot(AND_GATE, 2);
+	leafNode *child2 = createLeafNode(1);
+
+	if (setLeft(LEAF, child2, newParent2) != 0)
+		result++;
+	
+	if (newParent2->nodes[0] != child2)
+		result++;
+
+	return result;
+}
+
+int test_setChild()
+{
+	int	result = 0;
+
+	internalNode *root = createRoot(AND_GATE, 4);
+
+	leafNode *child0 = createLeafNode(1);
+	leafNode *child1 = createLeafNode(0);
+	internalNode *child2 = createInternalNode(OR_GATE, 2);
+	internalNode *child3 = createInternalNode(NOT_GATE, 1);
+
+	if (setChild(LEAF, child0, root, 0) != 0)
+		result++;
+	if (setChild(LEAF, child1, root, 1) != 0)
+		result++;
+	if (setChild(INTERNAL, child2, root, 2) != 0)
+		result++;
+	if (setChild(INTERNAL, child3, root, 3) != 0)
+		result++;
+
+	if (root->nodes[0] != child0)
+		result++;
+	
+	if (root->nodes[1] != child1)
+		result++;
+	
+	if (root->nodes[2] != child2)
+		result++;
+	
+	if (root->nodes[3] != child3)
 		result++;
 
 	return result;
@@ -89,7 +143,8 @@ TestDriver tests[] = {
 	test_createInternalNode,
 	test_createLeafNode,
 	test_createRoot,
-	test_setLeft
+	test_setLeft,
+	test_setChild
 };
 
 int main()
