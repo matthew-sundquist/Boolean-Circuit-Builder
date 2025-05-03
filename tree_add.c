@@ -75,15 +75,13 @@ int setLeft(NodeType type, void *newNode, internalNode *parent)
 
 	if (type == INTERNAL)
 	{
-		internalNode *int_node = (internalNode *) newNode;
 		parent->nodes[0] = newNode;
 		parent->types[0] = INTERNAL;
 	}
 
 	else if (type == LEAF)
 	{
-		leafNode *leaf_node = (leafNode *) newNode;
-		parent->nodes[0] = leaf_node;
+		parent->nodes[0] = newNode;
 		parent->types[0] = LEAF;
 	}
 
@@ -105,15 +103,13 @@ int setRight(NodeType type, void *newNode, internalNode *parent)
 
 	if (type == INTERNAL)
 	{
-		internalNode *int_node = (internalNode *) newNode;
-		parent->nodes[1] = int_node;
+		parent->nodes[1] = newNode;
 		parent->types[1] = INTERNAL;
 	}
 
 	else if (type == LEAF)
 	{
-		leafNode *leaf_node = (leafNode *) newNode;
-		parent->nodes[1] = leaf_node;
+		parent->nodes[1] = newNode;
 		parent->types[1] = LEAF;
 	}
 
@@ -133,17 +129,15 @@ int setChild(NodeType type, void *newNode, internalNode *parent, int nodeNum)
 	if (nodeNum >= parent->count)
 		return -1;
 	
+	parent->nodes[nodeNum] = newNode;
+
 	if (type == INTERNAL)
 	{
-		internalNode *int_node = (internalNode *) newNode;
-		parent->nodes[nodeNum] = int_node;
 		parent->types[nodeNum] = INTERNAL;
 	}
 
 	else if (type == LEAF)
 	{
-		leafNode *leaf_node = (leafNode *) newNode;
-		parent->nodes[nodeNum] = leaf_node;
 		parent->types[nodeNum] = LEAF;
 	}
 
