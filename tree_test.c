@@ -98,6 +98,11 @@ int test_setLeft()
 	
 	if (newParent2->nodes[0] != child2)
 		result++;
+	
+	internalNode *tmp = parent->nodes[0];
+
+	if (tmp->parent != parent)
+		result++;
 
 	return result;
 }
@@ -133,7 +138,16 @@ int test_setChild()
 	
 	if (root->nodes[3] != child3)
 		result++;
+	
 
+	for (int i = 0; i < 4; i++)
+	{
+		internalNode *tmp = (internalNode *)(root->nodes[i]);
+
+		if (tmp->parent != root)
+			result++;
+	}
+ 
 	return result;
 }
 

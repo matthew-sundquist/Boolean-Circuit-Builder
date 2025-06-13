@@ -89,6 +89,9 @@ int setLeft(NodeType type, void *newNode, internalNode *parent)
 	{
 		return -1;
 	}
+	
+	internalNode *tmp = (internalNode *)(parent->nodes[0]);
+	tmp->parent = parent;
 
 	return 0;
 }
@@ -117,6 +120,9 @@ int setRight(NodeType type, void *newNode, internalNode *parent)
 	{
 		return -1;
 	}
+	
+	internalNode *tmp = (internalNode *)(parent->nodes[1]);
+	tmp->parent = parent;
 
 	return 0;
 }
@@ -146,6 +152,8 @@ int setChild(NodeType type, void *newNode, internalNode *parent, int nodeNum)
 		return -1;
 	}
 
+	internalNode *tmp = (internalNode *)(parent->nodes[nodeNum]);
+	tmp->parent = parent;
 	
 	return 0;
 }
