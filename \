@@ -1,0 +1,29 @@
+/* Created by Matthew Sundquist */
+/* Tree Operations */
+
+int depth_first_recursive(internalNode *root)
+{
+
+	if (root->)
+	{
+		/* internal node */
+		/* recurse */
+			
+		int results[root->count];
+
+		internalNode *tmp = (internalNode *)(root->nodes[i])
+	}
+
+	else
+	{
+		/* leaf node */
+		/* do not recurse */
+
+		leafNode *tmp = (leafNode *)(root->nodes[i]);
+
+		return tmp->data;
+	}
+
+
+	return function_gate
+}
