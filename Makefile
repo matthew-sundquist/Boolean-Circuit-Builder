@@ -8,7 +8,7 @@ CPPFLAGS = -I.
 .PHONY: clean test
 
 clean: 
-	rm -rf gates_test gates_test.o libgates.a gates.o tree_test.o tree_add.o libtree.a tree_test
+	rm -rf gates_test gates_test.o libgates.a gates.o tree_test.o tree_add.o libtree.a tree_test tree_exec.o
 
 libgates.a: gates.o boolheader.h
 	ar rcs libgates.a gates.o 

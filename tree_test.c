@@ -171,6 +171,17 @@ int test_dfs()
 
 	if (depth_first_node(root) != 0)
 		result++;
+	
+	internalNode *root2 = createRoot(OR_GATE, 2);
+
+	leafNode *leaf3 = createLeafNode(1);
+	leafNode *leaf4 = createLeafNode(0);
+
+	setLeft(LEAF, leaf3, root2);
+	setRight(LEAF, leaf4, root2);
+
+	if (depth_first_node(root2) != 1)
+		result++;
 
 	return result;
 }
