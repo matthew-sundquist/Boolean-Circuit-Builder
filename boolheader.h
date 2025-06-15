@@ -46,4 +46,7 @@ internalNode *createRoot(GateType type, int count);
 int setLeft(NodeType type, void *newNode, internalNode *parent);
 int setRight(NodeType type, void *newNode, internalNode *parent);
 int setChild(NodeType type, void *newNode, internalNode *parent, int nodeNum);
+int depth_first_tree(tree *tr);
+int depth_first_node(internalNode *node);
+int function_gate(GateType type, int count, int *args);
 #endif

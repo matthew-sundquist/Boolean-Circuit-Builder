@@ -7,34 +7,40 @@
 int depth_first_recursive(void *node, NodeType type)
 {
 
+	if (node == NULL)
+		return -1;
+	
+	if (type != INTERNAL && type != LEAF)
+		return -1;
+	
+	
 	if (type == INTERNAL)
 	{
 		/* internal node */
 		/* recurse */
 			
 		internalNode *tmp = (internalNode *)(node);
-		int values[tmp->count];
-
+		int results[tmp->count];
+		
 		for (int i = 0; i < tmp->count; i++)
 		{
 			results[i] = depth_first_recursive(tmp->nodes[i], tmp->types[i]);
 		}
+
+		return function_gate(tmp->gate, tmp->count, results); 
 	}
 
 	else
 	{
 		/* leaf node */
 		/* do not recurse */
-
-		leafNode *tmp = (leafNode *)(root->nodes[i]);
+		
+		leafNode *tmp = (leafNode *)(node);
 
 		return tmp->data;
 	}
 
 	
-	internalNode *gate = (internalNode *)(node);
-
-	return function_gate(internalNode->gate, gate->count, results);
 }
 
 int depth_first_tree(tree *tr)

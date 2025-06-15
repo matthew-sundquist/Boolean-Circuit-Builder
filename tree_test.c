@@ -2,7 +2,7 @@
 
 #include <boolheader.h>
 
-#define NUM_TESTS 5
+#define NUM_TESTS 6
 
 
 int test_createInternalNode()
@@ -151,6 +151,30 @@ int test_setChild()
 	return result;
 }
 
+int test_dfs()
+{
+	int result = 0;
+
+	internalNode *root = createRoot(AND_GATE, 2);
+
+	internalNode *leftNode = createInternalNode(NOT_GATE, 1);
+
+	setLeft(INTERNAL, leftNode, root);
+
+	leafNode *leaf1 = createLeafNode(1);
+
+	setChild(LEAF, leaf1, leftNode, 0);
+
+	leafNode *leaf2 = createLeafNode(1);
+
+	setRight(LEAF, leaf2, root);
+
+	if (depth_first_node(root) != 0)
+		result++;
+
+	return result;
+}
+
 typedef int (*TestDriver)(); 
 
 TestDriver tests[] = {
@@ -158,7 +182,8 @@ TestDriver tests[] = {
 	test_createLeafNode,
 	test_createRoot,
 	test_setLeft,
-	test_setChild
+	test_setChild,
+	test_dfs
 };
 
 int main()
